@@ -2,5 +2,4 @@
 name = "human"
 version = "0.1.0"
 authors = ["Jan Baudisch <dev@baudisch.xyz>"]
-
-[dependencies]
+description = "converts numeric litaral into humand-readable format"
