@@ -1,13 +1,16 @@
 use std::{u8, fmt};
 
+// a block describing three digits
 pub struct Block {
     single: u8,
     ten: u8,
     hundred: u8,
+    // indicates occurence of block (1st, 2nd, 3rd, ...)
     level: u8
 }
 
 impl Block {
+    // creates a new block
     pub fn new(single: u8, ten: u8, hundred: u8, level: u8) -> Block {
         Block {
             single: single,
@@ -18,6 +21,7 @@ impl Block {
     }
 }
 
+// implement formatting of a block as a way of serializing it
 impl fmt::Display for Block {
     fn fmt(&self, formatter: &mut fmt::Formatter) -> fmt::Result {
         let single = self.single.to_human();
@@ -36,13 +40,14 @@ impl fmt::Display for Block {
         };
 
         let hundred = match self.hundred {
-            0 => "".to_owned(),
-            _ => format!("{} hundred", self.hundred.to_human())
+            1...9 => format!("{} hundred", self.hundred.to_human()),
+            _ => "".to_owned()
         };
 
         match self.level {
+            // 'base' block doesn't have an identifier
             0 => {
-                write!(formatter, "{} {} {} {}", hundred, ten, "and", single)
+                write!(formatter, "{} {} {}", hundred, ten, single)
             },
             _ => {
                 let identifier = match self.level {
@@ -63,6 +68,7 @@ impl fmt::Display for Block {
     }
 }
 
+// make u8s human readable
 trait ToHuman {
     fn to_human(&self) -> &str;
 }
