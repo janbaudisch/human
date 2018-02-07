@@ -24,20 +24,43 @@ impl Block {
 // implement formatting of a block as a way of serializing it
 impl fmt::Display for Block {
     fn fmt(&self, formatter: &mut fmt::Formatter) -> fmt::Result {
-        let single = self.single.to_human();
+        // let mut single = self.single.to_human();
+        let single;
 
         let ten = match self.ten {
-            1 => "ten",
-            2 => "twenty",
-            3 => "thirty",
-            4 => "forthy",
-            5 => "fifty",
-            6 => "sixty",
-            7 => "seventy",
-            8 => "eighty",
-            9 => "ninety",
-            _ => ""
-        };
+            1 => {
+                single = match self.single {
+                    0 => "ten",
+                    1 => "eleven",
+                    2 => "twelve",
+                    3 => "thirteen",
+                    4 => "fourteen",
+                    5 => "fifteen",
+                    6 => "sixteen",
+                    7 => "seventeen",
+                    8 => "eighteen",
+                    9 => "nineteen",
+                    _ => ""
+                };
+
+                ""
+            },
+            _ => {
+                single = self.single.to_human();
+
+                match self.ten {
+                    2 => "twenty",
+                    3 => "thirty",
+                    4 => "fourty",
+                    5 => "fifty",
+                    6 => "sixty",
+                    7 => "seventy",
+                    8 => "eighty",
+                    9 => "ninety",
+                    _ => ""
+                }
+            }
+        }.trim_right();
 
         let hundred = match self.hundred {
             1...9 => format!("{} hundred", self.hundred.to_human()),

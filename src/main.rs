@@ -1,6 +1,4 @@
 // TODO: disallow leading zero
-// TODO: make 11, 12, 13, ... work properly
-// TODO: add tests
 
 #[macro_use] extern crate text_io;
 
