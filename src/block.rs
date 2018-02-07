@@ -73,7 +73,7 @@ impl fmt::Display for Block {
     }
 }
 
-// make u8s human readable
+// make u8 human readable
 trait ToHuman {
     fn to_human(&self) -> &str;
 }
