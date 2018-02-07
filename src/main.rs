@@ -73,7 +73,11 @@ fn main() {
 
     while i > 0 {
         let new = format!("{}", blocks[i - 1]);
-        output = format!("{}, {}", output, new.trim_left());
+
+        if new != "" {
+            output = format!("{}, {}", output, new.trim_left());
+        }
+
         i = i - 1;
     }
 

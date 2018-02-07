@@ -50,20 +50,24 @@ impl fmt::Display for Block {
                 write!(formatter, "{} {} {}", hundred, ten, single)
             },
             _ => {
-                let identifier = match self.level {
-                    1 => "thousand",
-                    2 => "million",
-                    3 => "billion",
-                    4 => "trillion",
-                    5 => "quadrillion",
-                    6 => "quintillion",
-                    7 => "sextillion",
-                    8 => "septillion",
-                    _ => ""
-                };
+                if single == "" && ten == "" && hundred == "" {
+                    write!(formatter, "")
+                } else {
+                    let identifier = match self.level {
+                        1 => "thousand",
+                        2 => "million",
+                        3 => "billion",
+                        4 => "trillion",
+                        5 => "quadrillion",
+                        6 => "quintillion",
+                        7 => "sextillion",
+                        8 => "septillion",
+                        _ => ""
+                    };
 
-                let block = format!("{} {} {}", hundred, ten, single);
-                write!(formatter, "{} {}", block.trim_right(), identifier)
+                    let block = format!("{} {} {}", hundred, ten, single);
+                    write!(formatter, "{} {}", block.trim_right(), identifier)
+                }
             }
         }
     }
