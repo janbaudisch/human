@@ -1,5 +1,3 @@
-// TODO: disallow leading zero
-
 #[macro_use] extern crate text_io;
 
 mod block;
@@ -28,8 +26,27 @@ fn main() {
         digits.push(digit);
     }
 
-    // make blocks of three digits
+    // don't proceed without digits
     let mut i = digits.len();
+    if i == 0 {
+        println!("No numeric litaral given!");
+        process::exit(1);
+    }
+
+    // don't proceed with leading zero
+    if digits[0] == 0 && i > 1 {
+        println!("Why would you start with 0?");
+        process::exit(1);
+    }
+
+    // with one zero, just print it, no need to add logic for that
+    if digits[0] == 0 {
+        println!("zero");
+        process::exit(0);
+    }
+
+    // everything should be fine
+    // make blocks of three digits
     let mut level = 0;
     let mut blocks: Vec<Block> = Vec::new();
 
@@ -65,18 +82,14 @@ fn main() {
     let mut i = blocks.len();
     let mut output: String = format!("{}", blocks[i - 1]);
 
-    if i > 0 {
+    while i > 1 {
         i = i - 1;
-    }
-
-    while i > 0 {
+        
         let new = format!("{}", blocks[i - 1]);
 
         if new != "" {
             output = format!("{}, {}", output, new.trim_left());
         }
-
-        i = i - 1;
     }
 
     // done
