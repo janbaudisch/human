@@ -1,5 +1,4 @@
 // TODO: disallow leading zero
-// TODO: trim whitespace after hundred without ten
 // TODO: make 11, 12, 13, ... work properly
 // TODO: add tests
 

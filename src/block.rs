@@ -62,7 +62,8 @@ impl fmt::Display for Block {
                     _ => ""
                 };
 
-                write!(formatter, "{} {} {} {}", hundred, ten, single, identifier)
+                let block = format!("{} {} {}", hundred, ten, single);
+                write!(formatter, "{} {}", block.trim_right(), identifier)
             }
         }
     }
