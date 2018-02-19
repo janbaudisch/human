@@ -15,3 +15,6 @@ one hundred twenty three thousand, four hundred fifty six
 ```
 
 Please note that leading zeros are not allowed.
+
+### Caution
+This program only works (in a useful way) until 999 vigintillion (999 * 10^63). Anything greater than that is expressed as `toolargeillion` It also uses the short scale as commonly found in the (modern) English language.

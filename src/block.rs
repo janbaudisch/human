@@ -85,7 +85,20 @@ impl fmt::Display for Block {
                         6 => "quintillion",
                         7 => "sextillion",
                         8 => "septillion",
-                        _ => ""
+                        9 => "octillion",
+                        10 => "nonillion",
+                        11 => "decillion",
+                        12 => "undecillion",
+                        13 => "duodecillion",
+                        14 => "tredecillion",
+                        15 => "quattuordecillion",
+                        16 => "quindecillion",
+                        17 => "sexdecillion",
+                        18 => "septendecillion",
+                        19 => "octodecillion",
+                        20 => "novemdecillion",
+                        21 => "vigintillion",
+                        _ => "toolargeillion"
                     };
 
                     let block = format!("{} {} {}", hundred, ten, single);
