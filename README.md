@@ -1,5 +1,5 @@
 # human
-converts numeric litaral into humand-readable format
+converts numeric litaral into human-readable format
 
 ## Installation
 `cargo build --release` will build the project. The program can be found under `target/release/human`.
