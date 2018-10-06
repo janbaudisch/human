@@ -2,7 +2,7 @@
 name = "human"
 version = "1.0.0"
 authors = ["Jan Baudisch <dev@baudisch.xyz>"]
-description = "converts numeric litaral into humand-readable format"
+description = "Converts a numeric litaral into an humand-readable format."
 
 [dependencies]
 text_io = "0.1.7"
