@@ -1,0 +1,21 @@
+language: rust
+
+rust:
+  - stable
+  - beta
+  - nightly
+
+script:
+  - set -e
+  - cargo build
+
+jobs:
+  include:
+    - stage: lint
+      rust: nightly
+      install:
+        - rustup component add clippy-preview
+        - rustup component add rustfmt-preview
+      script:
+        - cargo clippy -- --deny clippy::all
+        - cargo fmt --all -- --check
