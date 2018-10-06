@@ -1,4 +1,4 @@
-use std::{u8, fmt};
+use std::{fmt, u8};
 
 // a block describing three digits
 pub struct Block {
@@ -13,10 +13,10 @@ impl Block {
     // creates a new block
     pub fn new(single: u8, ten: u8, hundred: u8, level: u8) -> Block {
         Block {
-            single: single,
-            ten: ten,
-            hundred: hundred,
-            level: level
+            single,
+            ten,
+            hundred,
+            level
         }
     }
 }
@@ -44,7 +44,7 @@ impl fmt::Display for Block {
                 };
 
                 ""
-            },
+            }
             _ => {
                 single = self.single.to_human();
 
@@ -60,7 +60,8 @@ impl fmt::Display for Block {
                     _ => ""
                 }
             }
-        }.trim_right();
+        }
+        .trim_right();
 
         let hundred = match self.hundred {
             1...9 => format!("{} hundred", self.hundred.to_human()),
@@ -69,9 +70,7 @@ impl fmt::Display for Block {
 
         match self.level {
             // 'base' block doesn't have an identifier
-            0 => {
-                write!(formatter, "{} {} {}", hundred, ten, single)
-            },
+            0 => write!(formatter, "{} {} {}", hundred, ten, single),
             _ => {
                 if single == "" && ten == "" && hundred == "" {
                     write!(formatter, "")
@@ -116,16 +115,16 @@ trait ToHuman {
 
 impl ToHuman for u8 {
     fn to_human(&self) -> &str {
-        match self {
-            &1 => "one",
-            &2 => "two",
-            &3 => "three",
-            &4 => "four",
-            &5 => "five",
-            &6 => "six",
-            &7 => "seven",
-            &8 => "eight",
-            &9 => "nine",
+        match *self {
+            1 => "one",
+            2 => "two",
+            3 => "three",
+            4 => "four",
+            5 => "five",
+            6 => "six",
+            7 => "seven",
+            8 => "eight",
+            9 => "nine",
             _ => ""
         }
     }

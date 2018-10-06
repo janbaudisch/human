@@ -1,4 +1,5 @@
-#[macro_use] extern crate text_io;
+#[macro_use]
+extern crate text_io;
 
 mod block;
 
@@ -53,19 +54,9 @@ fn main() {
     while i > 0 {
         let single = digits[i - 1];
 
-        let ten;
-        if i >= 2 {
-            ten = digits[i - 2];
-        } else {
-            ten = 0;
-        }
+        let ten = if i >= 2 { digits[i - 2] } else { 0 };
 
-        let hundred;
-        if i >= 3 {
-            hundred = digits[i - 3];
-        } else {
-            hundred = 0;
-        }
+        let hundred = if i >= 3 { digits[i - 3] } else { 0 };
 
         blocks.push(Block::new(single, ten, hundred, level));
 
@@ -73,8 +64,8 @@ fn main() {
             break;
         }
 
-        level = level + 1;
-        i = i - 3;
+        level += 1;
+        i -= 3;
     }
 
     // chain all block together in a single string
@@ -83,8 +74,8 @@ fn main() {
     let mut output: String = format!("{}", blocks[i - 1]);
 
     while i > 1 {
-        i = i - 1;
-        
+        i -= 1;
+
         let new = format!("{}", blocks[i - 1]);
 
         if new != "" {
