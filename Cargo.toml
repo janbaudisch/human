@@ -9,3 +9,4 @@ text_io = "0.1.7"
 
 [profile.release]
 lto = true
+codegen-units = 1
