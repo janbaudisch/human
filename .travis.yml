@@ -6,7 +6,6 @@ rust:
   - nightly
 
 script:
-  - set -e
   - cargo build
 
 jobs:
@@ -19,3 +18,22 @@ jobs:
       script:
         - cargo clippy -- --deny clippy::all
         - cargo fmt --all -- --check
+
+    - stage: deploy
+      branches:
+        only:
+          - master
+      if: tag IS present AND fork = false
+      rust: stable
+      script:
+        - set -e
+        - cargo build --release
+        - mv target/release/human target/release/human-x86_64-unknown-linux-gnu
+        - strip -s target/release/human-x86_64-unknown-linux-gnu
+      deploy: &releases
+        provider: releases
+        api_key: $GITHUB_TOKEN
+        file: "target/release/human-x86_64-unknown-linux-gnu"
+        skip_cleanup: true
+        on:
+          tags: true
