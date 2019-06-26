@@ -11,12 +11,17 @@ script:
 jobs:
   include:
     - stage: lint
+      rust: stable
+      install:
+        - rustup component add clippy
+      script:
+        - cargo clippy --all -- --deny clippy::all
+
+    - stage: format
       rust: nightly
       install:
-        - rustup component add clippy-preview
-        - rustup component add rustfmt-preview
+        - rustup component add rustfmt || cargo install --git https://github.com/rust-lang/rustfmt --force --bin rustfmt
       script:
-        - cargo clippy -- --deny clippy::all
         - cargo fmt --all -- --check
 
     - stage: deploy
