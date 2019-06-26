@@ -23,5 +23,5 @@ one hundred twenty three thousand, four hundred fifty six
 
 This program only works (in a useful way) until 999 vigintillion (999 * 10^63). Anything greater than that is expressed as `toolargeillion`. It also uses the short scale as commonly found in the (modern) English language.
 
-[build-img]: https://travis-ci.com/flyingP0tat0/human.svg?branch=master
-[build-url]: https://travis-ci.com/flyingP0tat0/human
+[build-img]: https://travis-ci.com/janbaudisch/human.svg?branch=master
+[build-url]: https://travis-ci.com/janbaudisch/human
