@@ -1,14 +1,12 @@
-#[macro_use]
-extern crate text_io;
-
 mod block;
+mod input;
 
 use block::Block;
 use std::process;
 
 fn main() {
     // get user input
-    let input: String = read!("{}\n");
+    let input: String = input::read_line();
 
     // convert to vec of digits
     let mut digits: Vec<u8> = Vec::new();

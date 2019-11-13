@@ -5,7 +5,6 @@ authors = ["Jan Baudisch <dev@baudisch.xyz>"]
 description = "Converts a numeric litaral into an humand-readable format."
 
 [dependencies]
-text_io = "0.1.7"
 
 [profile.release]
 lto = true
