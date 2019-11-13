@@ -1,16 +1,18 @@
 language: rust
 
+os:
+  - linux
+  - osx
+
 rust:
   - stable
   - beta
   - nightly
 
-script:
-  - cargo build
-
 jobs:
   include:
     - stage: lint
+      os: linux
       rust: stable
       install:
         - rustup component add clippy
@@ -18,9 +20,10 @@ jobs:
         - cargo clippy --all -- --deny clippy::all
 
     - stage: format
-      rust: nightly
+      os: linux
+      rust: stable
       install:
-        - rustup component add rustfmt || cargo install --git https://github.com/rust-lang/rustfmt --force --bin rustfmt
+        - rustup component add rustfmt
       script:
         - cargo fmt --all -- --check
 
@@ -29,16 +32,20 @@ jobs:
         only:
           - master
       if: tag IS present AND fork = false
+      os:
+        - linux
+        - osx
       rust: stable
       script:
-        - set -e
+        - if [ "$TRAVIS_OS_NAME" = "linux" ]; then export EXECUTABLE_NAME=human-x86_64-unknown-linux-gnu; fi
+        - if [ "$TRAVIS_OS_NAME" = "osx" ]; then export EXECUTABLE_NAME=human-x86_64-apple-darwin; fi
         - cargo build --release
-        - mv target/release/human target/release/human-x86_64-unknown-linux-gnu
-        - strip -s target/release/human-x86_64-unknown-linux-gnu
+        - strip -s target/release/human
+        - mv target/release/human target/release/$EXECUTABLE_NAME
       deploy: &releases
         provider: releases
         api_key: $GITHUB_TOKEN
-        file: "target/release/human-x86_64-unknown-linux-gnu"
+        file: "target/release/$EXECUTABLE_NAME"
         skip_cleanup: true
         on:
           tags: true
