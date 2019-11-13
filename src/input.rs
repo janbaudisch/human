@@ -7,7 +7,7 @@ pub fn read_line() -> String {
         Ok(_) => {
             input.pop();
         }
-        Err(error) => panic!("{}", error)
+        Err(error) => panic!("{}", error),
     }
 
     input

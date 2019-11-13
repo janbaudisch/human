@@ -6,7 +6,7 @@ pub struct Block {
     ten: u8,
     hundred: u8,
     // indicates occurence of block (1st, 2nd, 3rd, ...)
-    level: u8
+    level: u8,
 }
 
 impl Block {
@@ -16,7 +16,7 @@ impl Block {
             single,
             ten,
             hundred,
-            level
+            level,
         }
     }
 }
@@ -40,7 +40,7 @@ impl fmt::Display for Block {
                     7 => "seventeen",
                     8 => "eighteen",
                     9 => "nineteen",
-                    _ => ""
+                    _ => "",
                 };
 
                 ""
@@ -57,7 +57,7 @@ impl fmt::Display for Block {
                     7 => "seventy",
                     8 => "eighty",
                     9 => "ninety",
-                    _ => ""
+                    _ => "",
                 }
             }
         }
@@ -65,7 +65,7 @@ impl fmt::Display for Block {
 
         let hundred = match self.hundred {
             1...9 => format!("{} hundred", self.hundred.to_human()),
-            _ => "".to_owned()
+            _ => "".to_owned(),
         };
 
         match self.level {
@@ -97,7 +97,7 @@ impl fmt::Display for Block {
                         19 => "octodecillion",
                         20 => "novemdecillion",
                         21 => "vigintillion",
-                        _ => "toolargeillion"
+                        _ => "toolargeillion",
                     };
 
                     let block = format!("{} {} {}", hundred, ten, single);
@@ -125,7 +125,7 @@ impl ToHuman for u8 {
             7 => "seven",
             8 => "eight",
             9 => "nine",
-            _ => ""
+            _ => "",
         }
     }
 }
