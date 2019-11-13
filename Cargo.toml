@@ -1,6 +1,6 @@
 [package]
 name = "human"
-version = "1.0.0"
+version = "1.2.0"
 authors = ["Jan Baudisch <dev@baudisch.xyz>"]
 description = "Converts a numeric litaral into an humand-readable format."
 edition = "2018"
