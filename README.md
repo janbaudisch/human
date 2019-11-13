@@ -2,7 +2,7 @@
 
 # human
 
-> Converts a numeric litaral into an human-readable format.
+> Converts a numeric litaral into a human-readable format.
 
 ## Installation
 
