@@ -61,10 +61,10 @@ impl fmt::Display for Block {
                 }
             }
         }
-        .trim_right();
+        .trim_end();
 
         let hundred = match self.hundred {
-            1...9 => format!("{} hundred", self.hundred.to_human()),
+            1..=9 => format!("{} hundred", self.hundred.to_human()),
             _ => "".to_owned(),
         };
 
@@ -101,7 +101,7 @@ impl fmt::Display for Block {
                     };
 
                     let block = format!("{} {} {}", hundred, ten, single);
-                    write!(formatter, "{} {}", block.trim_right(), identifier)
+                    write!(formatter, "{} {}", block.trim_end(), identifier)
                 }
             }
         }

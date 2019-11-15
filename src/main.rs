@@ -77,10 +77,10 @@ fn main() {
         let new = format!("{}", blocks[i - 1]);
 
         if new != "" {
-            output = format!("{}, {}", output, new.trim_left());
+            output = format!("{}, {}", output, new.trim_start());
         }
     }
 
     // done
-    println!("{}", output.trim_left());
+    println!("{}", output.trim_start());
 }
