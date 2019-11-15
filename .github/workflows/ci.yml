@@ -1,0 +1,54 @@
+name: CI
+
+on: [push]
+
+jobs:
+  test:
+    name: Rust ${{ matrix.rust }} on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        rust: [stable, beta, nightly]
+        os: [ubuntu-latest, windows-latest, macos-latest]
+
+    steps:
+    - uses: actions/checkout@master
+    
+    - name: Install Rust
+      run: curl -sSf https://sh.rustup.rs | sh -s -- -y --default-toolchain ${{ matrix.rust }}
+
+    - name: Build
+      run: cargo build --all --verbose
+
+    - name: Test
+      run: cargo test --all --verbose
+
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+
+    - name: Install Rust
+      run: curl -sSf https://sh.rustup.rs | sh -s -- -y
+
+    - name: Add clippy
+      run: rustup component add clippy
+
+    - name: Lint
+      run: cargo clippy --all -- --deny clippy::all
+
+  format:
+    name: Format
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+
+    - name: Install Rust
+      run: curl -sSf https://sh.rustup.rs | sh -s -- -y
+
+    - name: Add rustfmt
+      run: rustup component add rustfmt
+
+    - name: Format
+      run: cargo fmt --all -- --check
